@@ -1,0 +1,62 @@
+.student-container {
+    padding: 20px;
+    background: transparent;
+    text-align: center;
+  }
+  
+  .student-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+    backdrop-filter: blur(10px);
+  }
+  
+  .student-table th, .student-table td {
+    padding: 12px;
+    text-align: left;
+    color: white;
+  }
+  
+  .student-table th {
+    background: rgba(255, 255, 255, 0.2);
+    text-transform: uppercase;
+  }
+  
+  .student-table tr:hover td {
+    background: rgba(255, 255, 255, 0.15);
+  }
+  
+  .pagination {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+  }
+  
+  .page-btn {
+    width: 35px;
+    height: 35px;
+    border-radius: 50%;
+    border: 2px solid white;
+    background-color: transparent;
+    color: white;
+    font-size: 16px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: 0.3s;
+  }
+  
+  .page-btn:hover {
+    background-color: rgba(255, 255, 255, 0.3);
+  }
+  
+  .page-btn.active {
+    background-color: white;
+    color: black;
+    border: none;
+  }
+  
