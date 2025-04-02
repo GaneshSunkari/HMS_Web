@@ -1,0 +1,103 @@
+/* Complaints Page - Dark Theme from styles.css */
+
+/* Main Container */
+.complaint-details {
+  max-width: 800px;
+  margin: 20px auto;
+  padding: 20px;
+  background: #222; /* Matching dark theme */
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+  color: white;
+}
+
+h2, h3 {
+  color: yellow; /* Highlighting important text */
+  margin-bottom: 10px;
+}
+
+p {
+  font-size: 16px;
+  color: #ddd; /* Light text for readability */
+  line-height: 1.5;
+}
+
+/* Comments Section */
+.comment-section {
+  margin-top: 20px;
+  padding-top: 15px;
+  border-top: 2px solid yellow;
+}
+
+.comments-list {
+  list-style: none;
+  padding: 0;
+}
+
+.comment-item {
+  background: #333;
+  padding: 10px;
+  margin-bottom: 8px;
+  border-radius: 5px;
+  font-size: 14px;
+  color: #ccc;
+  border-left: 4px solid yellow;
+}
+
+/* Comment Input */
+textarea {
+  width: 100%;
+  min-height: 80px;
+  padding: 10px;
+  border: 1px solid #555;
+  border-radius: 5px;
+  font-size: 14px;
+  resize: vertical;
+  background: #333;
+  color: white;
+}
+
+/* Submit Button */
+button {
+  background-color: yellow;
+  color: black;
+  border: none;
+  padding: 10px 15px;
+  font-size: 14px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  font-weight: bold;
+}
+
+button:hover {
+  background-color: orange;
+}
+
+/* Error Message */
+.error-message {
+  color: red;
+  font-size: 14px;
+  margin-top: 10px;
+}
+
+/* Complaint Images */
+.complaint-images {
+  margin-top: 15px;
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.complaint-image {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+  object-fit: cover;
+  border: 1px solid yellow;
+  padding: 5px;
+  box-shadow: 2px 2px 5px rgba(255, 255, 255, 0.1);
+}

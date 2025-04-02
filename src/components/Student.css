@@ -3,7 +3,7 @@
     background: transparent;
     text-align: center;
   }
-  
+ 
   .student-table {
     width: 100%;
     border-collapse: collapse;
@@ -59,4 +59,5 @@
     color: black;
     border: none;
   }
+  
   

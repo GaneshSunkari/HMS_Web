@@ -3,25 +3,24 @@ import "./HostelFormStyles.css";
 import api from "./Api";
 
 const HostelForm = ({ onCancel }) => {
-  // State to store form data
   const [hostelName, setHostelName] = useState("");
   const [numRooms, setNumRooms] = useState("");
+  const [loading, setLoading] = useState(false);
 
-  // Function to handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true);
 
     const hostelData = {
       name: hostelName,
       totalRooms: Number(numRooms),
-      // wings: ["A1"]  // Remove later
     };
 
     try {
-      const response = await api.post("/hostel/create",JSON.stringify(hostelData));
-      
+      const response = await api.post("/hostel/create", JSON.stringify(hostelData));
       const data = await response.data;
       console.log(data);
+
       if (response.status === 201) {
         alert("Hostel created successfully!");
         setHostelName("");
@@ -33,6 +32,8 @@ const HostelForm = ({ onCancel }) => {
     } catch (error) {
       console.error("Error creating hostel:", error);
       alert(error.message);
+    } finally {
+      setLoading(false);
     }
   };
 
@@ -59,9 +60,12 @@ const HostelForm = ({ onCancel }) => {
         />
 
         <div className="button-group">
-          <button type="submit" className="create-button">Create</button>
-          <button type="button" className="cancel-button" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="create-button" disabled={loading}>Create</button>
+          <button type="button" className="cancel-button" onClick={onCancel} disabled={loading}>Cancel</button>
         </div>
+
+        {/* Loader below buttons */}
+        {loading && <div className="loader-container"><div className="loader"></div></div>}
       </form>
     </div>
   );

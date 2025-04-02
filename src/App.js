@@ -4,6 +4,7 @@ import AdminDashboard from "./components/AdminDashboard";
 import Login from "./components/Login";
 import api from "./components/Api";
 import CircularProgress from "@mui/material/CircularProgress";
+import Complaints from "./components/Complaints";
 
 const App = () => {
   const [isAuthenticated, setIsAuthenticated] = useState(null); // ✅ Use state
@@ -65,6 +66,7 @@ const App = () => {
         <Route path="/" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Navigate to="/login" />} />
         <Route path="/login" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Login />} />
         <Route path="/admindashboard" element={isAuthenticated ? <AdminDashboard /> : <Navigate to="/login" />} />
+        <Route path="/complaints/:id" element={<Complaints />} />
         <Route path="*" element={<Navigate to="/login" />} />
       </Routes>
     </Router>

@@ -14,6 +14,7 @@ const CareTakerForm = ({ onCancel }) => {
   const [hostels, setHostels] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [submitting, setSubmitting] = useState(false); // Loader state
 
   // Fetch hostels from API
   useEffect(() => {
@@ -21,7 +22,7 @@ const CareTakerForm = ({ onCancel }) => {
       try {
         const response = await api.get("/hostel/");
         const data = response.data;
-        setHostels(data.data.hostels); // Assuming API response contains hostels
+        setHostels(data.data.hostels);
       } catch (err) {
         console.error("Error fetching hostels:", err);
         setError(err.message);
@@ -39,12 +40,13 @@ const CareTakerForm = ({ onCancel }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setSubmitting(true);
 
     try {
       const response = await api.post("/caretaker/create", formData);
       const data = await response.data;
-      console.log("api done : ");
-      console.log(data);
+      console.log("API Response:", data);
+
       if (response.status === 201) {
         alert("Caretaker created successfully!");
         setFormData({ fullName: "", email: "", password: "", contactNumber: "", hostelId: "" });
@@ -55,6 +57,8 @@ const CareTakerForm = ({ onCancel }) => {
     } catch (error) {
       console.error("Error creating caretaker:", error);
       alert(error.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
@@ -91,9 +95,12 @@ const CareTakerForm = ({ onCancel }) => {
         )}
 
         <div className="button-group">
-          <button type="submit" className="create-button">Create</button>
-          <button type="button" className="cancel-button" onClick={onCancel}>Cancel</button>
+          <button type="submit" className="create-button" disabled={submitting}>Create</button>
+          <button type="button" className="cancel-button" onClick={onCancel} disabled={submitting}>Cancel</button>
         </div>
+
+        {/* Loader below buttons */}
+        {submitting && <div className="loader-container"><div className="loader"></div></div>}
       </form>
     </div>
   );
