@@ -80,7 +80,7 @@ const Student = () => {
       {/* Student Table */}
       {!loading && !error && students.length > 0 && (
         <>
-          <table className="styled-table">
+          <table className="student-styled-table">
             <thead>
               <tr>
                 <th>S.No</th>
@@ -108,11 +108,11 @@ const Student = () => {
           </table>
 
           {/* Pagination Controls */}
-          <div className="pagination">
+          <div className="student-pagination">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex}
-                className={`page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
+                className={`student-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
                 onClick={() => setCurrentPage(pageIndex + 1)}
               >
                 {pageIndex + 1}

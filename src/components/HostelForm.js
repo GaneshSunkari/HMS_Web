@@ -59,13 +59,13 @@ const HostelForm = ({ onCancel }) => {
           required
         />
 
-        <div className="button-group">
-          <button type="submit" className="create-button" disabled={loading}>Create</button>
-          <button type="button" className="cancel-button" onClick={onCancel} disabled={loading}>Cancel</button>
+        <div className="hostel-button-group">
+          <button type="submit" className="hostel-create-button" disabled={loading}>Create</button>
+          <button type="button" className="hostel-cancel-button" onClick={onCancel} disabled={loading}>Cancel</button>
         </div>
 
         {/* Loader below buttons */}
-        {loading && <div className="loader-container"><div className="loader"></div></div>}
+        {loading && <div className="hostel-loader-container"><div className="hostel-loader"></div></div>}
       </form>
     </div>
   );

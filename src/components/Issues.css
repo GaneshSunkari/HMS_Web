@@ -10,7 +10,7 @@
     margin-bottom: 15px;
   }
   
-  .styled-table {
+  .issues-styled-table {
     width: 100%;
     border-collapse: collapse;
     margin-top: 20px;
@@ -19,35 +19,35 @@
     overflow: hidden;
   }
   
-  .styled-table thead {
+  .issues-styled-table thead {
     background-color: rgba(255, 255, 255, 0.3);
     color: white;
   }
   
-  .styled-table th,
-  .styled-table td {
+  .issues-styled-table th,
+  .issues-styled-table td {
     padding: 15px;
     text-align: left;
     border-bottom: 1px solid rgba(255, 255, 255, 0.2);
   }
   
-  .styled-table tbody tr:hover {
+  .issues-styled-table tbody tr:hover {
     background-color: rgba(255, 255, 255, 0.2);
   }
   
-  .styled-table th {
+  .issues-styled-table th {
     font-size: 18px;
     font-weight: bold;
     text-transform: uppercase;
   }
   
-  .styled-table td {
+  .issues-styled-table td {
     font-size: 16px;
     color: white;
   }
     
 
-  .pagination {
+  .issues-pagination {
     margin-top: 20px;
     display: flex;
     justify-content: center;
@@ -55,7 +55,7 @@
   }
   
   /* Circular Page Buttons */
-  .page-btn {
+  .issues-page-btn {
     width: 30px;
     height: 30px;
     border-radius: 50%;
@@ -72,13 +72,13 @@
   }
   
   /* Hover Effect */
-  .page-btn:hover {
+  .issues-page-btn:hover {
     background-color: rgba(255, 255, 255, 0.3);
     transform: scale(1.1);
   }
   
   /* Active Page Styling */
-  .page-btn.active {
+  .issues-page-btn.active {
     background-color: white;
     color: black;
     border: none;
@@ -99,8 +99,8 @@
   
   /* Make the table responsive */
   @media screen and (max-width: 768px) {
-    .styled-table th,
-    .styled-table td {
+    .issues-styled-table th,
+    .issues-styled-table td {
       padding: 10px;
       font-size: 14px;
     }

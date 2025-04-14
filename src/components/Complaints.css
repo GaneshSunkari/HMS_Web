@@ -11,12 +11,12 @@
   color: white;
 }
 
-h2, h3 {
+.complaint-details h2, h3 {
   color: yellow; /* Highlighting important text */
   margin-bottom: 10px;
 }
 
-p {
+.complaint-detailsp {
   font-size: 16px;
   color: #ddd; /* Light text for readability */
   line-height: 1.5;
@@ -58,7 +58,7 @@ textarea {
 }
 
 /* Submit Button */
-button {
+.complaint-details button {
   background-color: yellow;
   color: black;
   border: none;
@@ -70,7 +70,7 @@ button {
   font-weight: bold;
 }
 
-button:hover {
+.complaint-details button:hover {
   background-color: orange;
 }
 

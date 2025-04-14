@@ -50,7 +50,7 @@ const Profile = () => {
 
   return (
     <div className="profile-container">
-      <button className="logout-button" onClick={handleLogout}>
+      <button className="profile-logout-button" onClick={handleLogout}>
         Logout
       </button>
       <h2>User Profile</h2>

@@ -42,9 +42,9 @@ const Complaints = () => {
   
       {/* Conditionally render images if the list is not empty */}
       {complaint.images && complaint.images.length > 0 && (
-  <div className="complaint-images">
-    <h3>Attached Images:</h3>
-    <div className="image-gallery">
+    <div className="complaint-images">
+      <h3>Attached Images:</h3>
+      <div className="image-gallery">
       {complaint.images.map((imageUrl, index) => (
         <img key={index} src={imageUrl} alt={`Complaint Image ${index + 1}`} className="complaint-image" />
       ))}

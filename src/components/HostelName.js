@@ -42,7 +42,7 @@ const HostelName = ({ onAddHostel }) => {
 
       {loading ? (
         
-        <div className="loader-container">
+        <div className="hostelname-loader-container">
         <CircularProgress style={{ color: "white" }} />
       </div>
       ) : error ? (

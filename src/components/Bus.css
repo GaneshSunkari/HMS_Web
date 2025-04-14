@@ -1,0 +1,153 @@
+.buss-container {
+    width: 80%;
+    margin: 20px auto;
+    background: #1a1a1a;
+    padding: 20px;
+    box-shadow: 0 4px 10px rgba(255, 255, 255, 0.1);
+    border-radius: 8px;
+}
+
+/* Header Styling */
+.buss-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.buss-title {
+    font-size: 24px;
+    font-weight: bold;
+    color: white;
+}
+
+/* Create Button Styling */
+.buss-create-button {
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background: linear-gradient(45deg, #007bff, #00d4ff);
+    color: white;
+    border: none;
+    border-radius: 6px;
+    transition: all 0.3s ease-in-out;
+}
+
+.buss-create-button:hover {
+    background: linear-gradient(45deg, #0056b3, #0094cc);
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+    transform: scale(1.05);
+}
+
+/* Table Styling */
+.buss-table-container {
+    overflow-x: auto;
+    border-radius: 6px;
+    background: #1a1a1a;
+    padding: 10px;
+}
+
+.buss-table {
+    width: 100%;
+    border-collapse: collapse;
+    color: white;
+    font-size: 16px;
+    text-align: left;
+}
+
+/* Table Headers */
+.buss-table th {
+    background: linear-gradient(45deg, #222, #333);
+    color: white;
+    font-weight: bold;
+    padding: 15px;
+    text-transform: uppercase;
+}
+
+/* Table Rows */
+.buss-table td {
+    padding: 15px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    color: #ddd;
+}
+
+/* Row Hover Effect */
+.buss-table tbody tr {
+    transition: background 0.3s, transform 0.2s;
+}
+
+.buss-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.05);
+    transform: scale(1.02);
+}
+
+/* Action Cell */
+.buss-action-cell {
+    text-align: center;
+}
+
+/* Stylish Buttons for Actions */
+.buss-arrow-button {
+    background: none;
+    border: 2px solid #00d4ff;
+    color: #00d4ff;
+    padding: 6px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+}
+
+.buss-arrow-button:hover {
+    background: #00d4ff;
+    color: black;
+    box-shadow: 0 0 10px rgba(0, 212, 255, 0.7);
+    transform: scale(1.1);
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .buss-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 10px;
+    }
+
+    .buss-create-button {
+        width: 100%;
+        text-align: center;
+    }
+}
+.buss-pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+    flex-wrap: wrap;
+  }
+  
+  .buss-page-circle {
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    background-color: #e0e0e0;
+    border: 2px solid #ccc;
+    color: #333;
+    font-weight: bold;
+    cursor: pointer;
+    text-align: center;
+    line-height: 32px;
+    transition: all 0.3s ease;
+  }
+  
+  .buss-page-circle:hover {
+    background-color: #d4d4d4;
+  }
+  
+  .buss-page-circle.active {
+    background-color: #4f46e5;
+    color: #fff;
+    border-color: #4f46e5;
+  }
+  
+  

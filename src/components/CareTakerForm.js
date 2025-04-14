@@ -94,13 +94,13 @@ const CareTakerForm = ({ onCancel }) => {
           </select>
         )}
 
-        <div className="button-group">
-          <button type="submit" className="create-button" disabled={submitting}>Create</button>
-          <button type="button" className="cancel-button" onClick={onCancel} disabled={submitting}>Cancel</button>
+        <div className="caretaker-button-group">
+          <button type="submit" className="caretaker-create-button" disabled={submitting}>Create</button>
+          <button type="button" className="caretaker-cancel-button" onClick={onCancel} disabled={submitting}>Cancel</button>
         </div>
 
         {/* Loader below buttons */}
-        {submitting && <div className="loader-container"><div className="loader"></div></div>}
+        {submitting && <div className="caretaker-loader-container"><div className="caretaker-loader"></div></div>}
       </form>
     </div>
   );

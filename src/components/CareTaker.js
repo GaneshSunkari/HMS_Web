@@ -51,7 +51,7 @@ const CareTaker = () => {
           <h2 className="caretaker-title">Caretakers List</h2>
 
           {loading ? (
-            <div className="loader-container">
+            <div className="caretaker-loader-container">
               <CircularProgress style={{ color: "white" }} />
             </div>
           ) : error ? (

@@ -38,7 +38,7 @@
   }
   
   /* Logout Button */
-  .logout-button {
+  .profile-logout-button {
     position: absolute;
     top: 15px;
     right: 20px;
@@ -54,7 +54,7 @@
     transition: background-color 0.3s ease;
   }
   
-  .logout-button:hover {
+  .profile-logout-button:hover {
     background-color: #b52b38;
   }
   

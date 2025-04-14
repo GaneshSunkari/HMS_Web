@@ -73,7 +73,7 @@ const Issues = () => {
       {!loading && !error && issues.length === 0 && <p>No issues found.</p>}
       {!loading && !error && issues.length > 0 && (
         <>
-          <table className="styled-table">
+          <table className="issues-styled-table">
             <thead>
               <tr>
                 <th>Issue ID</th>
@@ -99,11 +99,11 @@ const Issues = () => {
               ))}
             </tbody>
           </table>
-          <div className="pagination">
+          <div className="issues-pagination">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex}
-                className={`page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
+                className={`issues-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
                 onClick={() => setCurrentPage(pageIndex + 1)}
               >
                 {pageIndex + 1}

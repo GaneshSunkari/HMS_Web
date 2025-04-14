@@ -27,14 +27,14 @@
     background: rgba(255, 255, 255, 0.15);
   }
   
-  .pagination {
+  .student-pagination {
     margin-top: 20px;
     display: flex;
     justify-content: center;
     gap: 10px;
   }
   
-  .page-btn {
+  .student-page-btn {
     width: 35px;
     height: 35px;
     border-radius: 50%;
@@ -50,14 +50,50 @@
     transition: 0.3s;
   }
   
-  .page-btn:hover {
+  .student-page-btn:hover {
     background-color: rgba(255, 255, 255, 0.3);
   }
   
-  .page-btn.active {
+  .student-page-btn.active {
     background-color: white;
     color: black;
     border: none;
+  }
+
+  .student-styled-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent */
+    border-radius: 8px;
+    overflow: hidden;
+  }
+  
+  .student-styled-table thead {
+    background-color: rgba(255, 255, 255, 0.3);
+    color: white;
+  }
+  
+  .student-styled-table th,
+  .student-styled-table td {
+    padding: 15px;
+    text-align: left;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+  
+  .student-styled-table tbody tr:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+  }
+  
+  .student-styled-table th {
+    font-size: 18px;
+    font-weight: bold;
+    text-transform: uppercase;
+  }
+  
+  .student-styled-table td {
+    font-size: 16px;
+    color: white;
   }
   
   

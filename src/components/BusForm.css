@@ -1,0 +1,148 @@
+/* BusForm.css - Dark Theme */
+
+.bus-form-container {
+    padding: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    background-color: #222;
+    border-radius: 10px;
+    color: white;
+  }
+  
+  .bus-form-header {
+    margin-bottom: 25px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #333;
+  }
+  
+  .bus-form-header h2 {
+    font-size: 22px;
+    font-weight: bold;
+    color: white;
+  }
+  
+  .bus-form-group {
+    margin-bottom: 25px;
+  }
+  
+  .bus-form-group label {
+    display: block;
+    margin-bottom: 10px;
+    font-weight: bold;
+    color: #ccc;
+  }
+  
+  .bus-multiselect-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    background-color: #1a1a1a;
+    padding: 15px;
+    border-radius: 8px;
+    border: 1px solid #333;
+  }
+  
+  .bus-checkbox-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 12px;
+    background-color: #333;
+    border-radius: 6px;
+    transition: all 0.3s;
+    cursor: pointer;
+  }
+  
+  .bus-checkbox-item:hover {
+    background-color: #444;
+  }
+  
+  .bus-checkbox-item input[type="checkbox"] {
+    margin-right: 8px;
+    accent-color: yellow;
+    cursor: pointer;
+  }
+  
+  .bus-checkbox-item label {
+    margin-bottom: 0;
+    cursor: pointer;
+  }
+  
+  input[type="date"] {
+    width: 100%;
+    padding: 12px 15px;
+    background-color: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 8px;
+    color: white;
+    font-size: 16px;
+  }
+  
+  input[type="date"]:focus {
+    outline: none;
+    border-color: yellow;
+    box-shadow: 0 0 5px rgba(255, 255, 0, 0.3);
+  }
+  
+  .bus-form-actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 30px;
+  }
+  
+  .busform-submit-button {
+    background-color: #333;
+    color: yellow;
+    padding: 12px 25px;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .busform-submit-button:hover {
+    background-color: #444;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  }
+  
+  .busform-cancel-button {
+    background-color: transparent;
+    color: #ccc;
+    padding: 12px 25px;
+    border: 1px solid #444;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+  
+  .busform-cancel-button:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+  }
+  
+  /* Custom styling for calendar icon */
+  input[type="date"]::-webkit-calendar-picker-indicator {
+    filter: invert(1);
+    cursor: pointer;
+  }
+  
+  @media (max-width: 768px) {
+    .bus-form-actions {
+      flex-direction: column;
+    }
+    
+    .busform-submit-button, .cancel-button {
+      width: 100%;
+    }
+    
+    .bus-multiselect-container {
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .bus-checkbox-item {
+      width: 100%;
+    }
+  }

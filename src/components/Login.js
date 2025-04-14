@@ -60,7 +60,7 @@ const Login = () => {
           {loading ? <CircularProgress size={24} color="inherit" /> : "Login"}
         </button>
       </form>
-      {error && <p className="error">{error}</p>}
+      {error && <p className="login-error">{error}</p>}
     </div>
   );
 };
