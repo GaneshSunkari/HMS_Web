@@ -12,6 +12,8 @@ const BusCreation = () => {
   const [showAnalytics, setShowAnalytics] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
+  const [selectedBus, setSelectedBus] = useState(null);
+
 
   const fetchBusData = async (page = 1) => {
     try {
@@ -84,16 +86,20 @@ const BusCreation = () => {
                     <td>
                       <span
                         className={
-                          bus.isActive ? "status-active" : "status-inactive"
+                          new Date(bus.expiresAt) > new Date() ? "status-active" : "status-inactive"
                         }
                       >
-                        {bus.isActive ? "Active" : "Inactive"}
+                        {new Date(bus.expiresAt) > new Date() ? "Active" : "Inactive"}
                       </span>
+
                     </td>
                     <td className="bus-action-cell">
                       <button
                         className="bus-arrow-button"
-                        onClick={() => setShowAnalytics(true)}
+                        onClick={() => {
+                          setSelectedBus(bus);
+                          setShowAnalytics(true);
+                        }}
                       >
                         <ChevronRight size={20} />
                       </button>
@@ -120,7 +126,7 @@ const BusCreation = () => {
         <BusForm onCancel={() => setShowForm(false)} />
       ) : (
         <BusAnalytics
-          analyticsData={busData}
+          analyticsData={selectedBus}
           onBack={() => setShowAnalytics(false)}
         />
       )}

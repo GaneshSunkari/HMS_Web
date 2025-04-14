@@ -4,48 +4,58 @@ import { Button } from "@mui/material";
 import axios from "axios";
 import "chart.js/auto";
 import "./BusAnalytics.css";
+import api from "./Api";
 
 const BusAnalytics = ({ analyticsData, onBack }) => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  const busId = analyticsData?.[0]?.id || "";
+  const busId = analyticsData?._id;
 
   useEffect(() => {
-    if (!busId) return;
+    const fetchStats = async () => {
+      if (!busId) return;
 
-    setLoading(true);
-    axios.get(`/bus/form/stats/${busId}`)
-      .then(response => {
-        setStats(response.data);
-      })
-      .catch(error => {
+      setLoading(true);
+      try {
+        const response = await api.get(`/bus/form/stats/${busId}`);
+        console.log("Bus Stats:", response.data);
+        setStats(response.data.data.stats);
+      } catch (error) {
         console.error("Error fetching bus stats:", error);
-      })
-      .finally(() => setLoading(false));
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchStats();
   }, [busId]);
 
   if (!busId) return <p>No Bus Selected</p>;
   if (loading) return <p>Loading Analytics...</p>;
   if (!stats) return <p>No analytics available.</p>;
 
-  // Assuming your API returns { yes, no, cityCounts } format
+
+  const cityCount = stats.cityCount || {};
+
+
   const pieData = {
     labels: ["Yes", "No"],
     datasets: [
       {
-        data: [stats.yes, stats.no],
+        data: [stats.busYesCount, stats.busNoCount],
         backgroundColor: ["#4CAF50", "#FF5252"],
       },
     ],
   };
 
+
   const barData = {
-    labels: Object.keys(stats.cityCounts),
+    labels: Object.keys(cityCount),
     datasets: [
       {
         label: "Students Count",
-        data: Object.values(stats.cityCounts),
+        data: Object.values(cityCount),
         backgroundColor: "#42A5F5",
       },
     ],
