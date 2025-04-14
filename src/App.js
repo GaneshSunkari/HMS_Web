@@ -56,20 +56,24 @@ const App = () => {
   // ✅ Prevent rendering until authentication is checked
   if (isAuthenticated === null) {
     return <div className="loader-container">
-            <CircularProgress style={{ color: "white" }} />
-          </div>
+      <CircularProgress style={{ color: "white" }} />
+    </div>
   }
 
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Navigate to="/login" />} />
-        <Route path="/login" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Login />} />
-        <Route path="/admindashboard" element={isAuthenticated ? <AdminDashboard /> : <Navigate to="/login" />} />
-        <Route path="/complaints/:id" element={<Complaints />} />
-        <Route path="*" element={<Navigate to="/login" />} />
-      </Routes>
-    </Router>
+    // <div style={{ height: "100vh", overflow: "hidden" }}>
+    <div>
+      <Router>
+        <Routes>
+          <Route path="/" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Navigate to="/login" />} />
+          <Route path="/login" element={isAuthenticated ? <Navigate to="/admindashboard" /> : <Login />} />
+          <Route path="/admindashboard" element={isAuthenticated ? <AdminDashboard /> : <Navigate to="/login" />} />
+          <Route path="/complaints/:id" element={<Complaints />} />
+          <Route path="*" element={<Navigate to="/login" />} />
+        </Routes>
+      </Router>
+    </div>
+
   );
 };
 
