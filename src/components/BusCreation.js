@@ -10,30 +10,33 @@ const BusCreation = () => {
   const [loading, setLoading] = useState(true);
   const [showForm, setShowForm] = useState(false);
   const [showAnalytics, setShowAnalytics] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(1);
+
+  const fetchBusData = async (page = 1) => {
+    try {
+      setLoading(true);
+      const response = await api.get(`/bus/form?page=${page}&limit=10`);
+      const buses = response.data?.data?.busForms || [];
+      const pagination = response.data?.data?.meta;
+      setBusData(Array.isArray(buses) ? buses : []);
+      setTotalPages(pagination?.totalPages || 1);
+    } catch (error) {
+      console.error("Error fetching bus data", error);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   useEffect(() => {
-    // Simulate API fetch with delay
-    const fetchBusData = async () => {
-      try {
-        setLoading(true);
-        const response = await api.get("/bus/form");
-        const buses = response.data?.data || [];
-        setBusData(Array.isArray(buses) ? buses : []);
-      } catch (error) {
-        console.error("Error fetching bus data", error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    fetchBusData();
-  }, []);
+    fetchBusData(currentPage);
+  }, [currentPage]);
 
   if (loading) {
     return (
       <div className="bus-loader">
         <div className="loader-circle" />
-        <p>Loading Buses...</p>
+        <p>Loading Bus Forms...</p>
       </div>
     );
   }
@@ -58,18 +61,25 @@ const BusCreation = () => {
                 <tr>
                   <th>S.No.</th>
                   <th>Allowed Hostels</th>
+                  <th>Cities</th>
                   <th>Is Active</th>
                   <th>Action</th>
                 </tr>
               </thead>
               <tbody>
                 {busData.map((bus, index) => (
-                  <tr key={bus.id || index}>
-                    <td>{index + 1}</td>
+                  <tr key={bus._id || index}>
+                    <td>{(currentPage - 1) * 10 + index + 1}</td>
                     <td>
-                      {Array.isArray(bus.allowedHostels)
-                        ? bus.allowedHostels.join(", ")
+                      {Array.isArray(bus.hostelId)
+                        ? bus.hostelId.map(h => h.name).join(", ")
                         : "No Hostels Assigned"}
+
+                    </td>
+                    <td>
+                      {Array.isArray(bus.cities)
+                        ? bus.cities.join(", ")
+                        : "No Cities Selected"}
                     </td>
                     <td>
                       <span
@@ -92,6 +102,18 @@ const BusCreation = () => {
                 ))}
               </tbody>
             </table>
+          </div>
+
+          <div className="busform-pagination">
+            {[...Array(totalPages)].map((_, pageIndex) => (
+              <button
+                key={pageIndex}
+                className={`busform-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
+                onClick={() => setCurrentPage(pageIndex + 1)}
+              >
+                {pageIndex + 1}
+              </button>
+            ))}
           </div>
         </>
       ) : showForm ? (
