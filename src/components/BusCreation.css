@@ -173,43 +173,34 @@
     }
   }
 
-  
   .bus-table {
     width: 100%;
-    border-collapse: collapse;
     margin-top: 20px;
-    background-color: rgba(255, 255, 255, 0.1); /* Semi-transparent */
-    border-radius: 8px;
-    overflow: hidden;
-  }
-  
-  .bus-table thead {
-    background-color: rgba(255, 255, 255, 0.3);
-    color: white;
-  }
-  
-  .bus-table th,
-  .bus-table td {
-    padding: 10px 15px;
-    text-align: left;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-  }
-  
-  .bus-table tbody tr:hover {
-    background-color: rgba(255, 255, 255, 0.2);
+    border-collapse: collapse;
   }
   
   .bus-table th {
-    font-size: 14px;
-    font-weight: bold;
-    text-transform: uppercase;
+    background-color: #333;
+    padding: 14px;
+    text-align: left;
+    border-bottom: 3px solid yellow;
+    font-size: 15px;
+  }
+  
+  .bus-table th.spaced {
+    padding-left: 20px;
   }
   
   .bus-table td {
+    padding: 12px;
+    border-bottom: 1px solid #444;
     font-size: 14px;
-    color: white;
   }
   
+  .bus-table tr:hover {
+    background-color: #444;
+  }
+
   .busform-pagination {
     margin-top: 20px;
     display: flex;
