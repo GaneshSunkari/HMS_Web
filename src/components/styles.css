@@ -9,6 +9,7 @@
   /* Layout */
   .container {
     display: flex;
+    min-height: 100vh;
     height: 100%;
     background-color: #000;
     color: white;

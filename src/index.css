@@ -14,6 +14,7 @@ code {
 
 /* index.css or App.css */
 html, body, #root {
+  min-height: 100vh;
   background-color: #121212; /* optional background */
 }
 
