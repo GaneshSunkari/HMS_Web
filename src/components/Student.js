@@ -3,6 +3,8 @@ import { useNavigate } from "react-router-dom";
 import "./Student.css";
 import api from "./Api";
 
+import { jwtDecode } from "jwt-decode";
+
 const Student = () => {
   const [students, setStudents] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -11,11 +13,23 @@ const Student = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [hostels, setHostels] = useState([]);
   const [selectedHostel, setSelectedHostel] = useState("");
+  const [role, setRole] = useState(null);
 
-  const navigate = useNavigate();
+  useEffect(() => {
+    const token = localStorage.getItem("accessToken");
+    if (token) {
+      try {
+        const decoded = jwtDecode(token);
+        setRole(decoded.role);
+      } catch (err) {
+        console.error("Token decode error", err);
+      }
+    }
+  }, []);
 
   useEffect(() => {
     const fetchHostels = async () => {
+      if (role !== "admin") return;
       setLoading(true);
       try {
         const response = await api.get("/hostel/");
@@ -29,13 +43,13 @@ const Student = () => {
       setLoading(false);
     };
     fetchHostels();
-  }, []);
+  }, [role]);
 
   useEffect(() => {
-    if (selectedHostel) {
+    if (role === "caretaker" || selectedHostel) {
       fetchStudents(currentPage, selectedHostel);
     }
-  }, [currentPage, selectedHostel]);
+  }, [currentPage, role, selectedHostel]);
 
   const fetchStudents = async (page, hostelId) => {
     setLoading(true);
@@ -61,7 +75,7 @@ const Student = () => {
         </div>
       )}
 
-      {!loading && (
+      {!loading && role === "admin" && (
         <div className="hostel-select-container">
           <label htmlFor="hostel-select">Select Hostel: </label>
           <select

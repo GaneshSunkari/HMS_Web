@@ -32,7 +32,7 @@ const Login = () => {
       // Redirect to Admin Dashboard
       window.location.href = "/admindashboard";
     } catch (err) {
-      setError("Invalid credentials");
+      setError(err?.response?.data?.message || "Invalid credentials");
     } finally {
       setLoading(false); // Stop loading after login attempt
     }
