@@ -2,10 +2,10 @@
   text-align: center;
 }
 .loader-container {
+  height: 100vh; /* Adjust height as needed */
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 200px; /* Adjust height as needed */
 }
 .App-logo {
   height: 40vmin;

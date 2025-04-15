@@ -55,7 +55,7 @@ const App = () => {
 
   // ✅ Prevent rendering until authentication is checked
   if (isAuthenticated === null) {
-    return <div className="loader-container">
+    return <div className="loader-container" style={{ height: "100vh", display: "flex", justifyContent: "center", alignItems: "center" }}>
       <CircularProgress style={{ color: "white" }} />
     </div>
   }
