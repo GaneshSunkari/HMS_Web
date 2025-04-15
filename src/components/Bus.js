@@ -3,6 +3,7 @@ import { ChevronRight } from "lucide-react";
 import BusDetails from "./BusDetails";
 import BookingDetails from "./BookingDetails";
 import api from "./Api"; // Assuming you have an api.js file for API requests
+import CircularProgress from "@mui/material/CircularProgress"; // Importing CircularProgress
 import "./Bus.css";
 
 const Bus = () => {
@@ -58,7 +59,9 @@ const Bus = () => {
           </div>
 
           {loading ? (
-            <p className="buss-loading">Loading buses...</p>
+            <div className="buss-loader-container">
+              <CircularProgress style={{ color: "white" }} />
+            </div>
           ) : error ? (
             <p className="buss-error">{error}</p>
           ) : (

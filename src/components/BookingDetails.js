@@ -35,9 +35,9 @@ const BookingDetails = ({ busId, onClose }) => {
     <div className="bookingdetails-container">
       <h3 className="bookingdetails-title">Booking Details</h3>
 
-      {/* Show loading or error message if applicable */}
+      {/* Show loading spinner or error message if applicable */}
       {loading ? (
-        <p className="bookingdetails-loading">Loading bookings...</p>
+        <div className="loading-spinner"></div> // Loading spinner
       ) : error ? (
         <p className="bookingdetails-error">{error}</p>
       ) : (

@@ -26,7 +26,12 @@ const Complaints = () => {
     fetchComplaint();
   }, [id]);
 
-  if (loading) return <p>Loading complaint details...</p>;
+  if (loading) {
+    return (
+      <div className="complaint-loader"></div> // Display loader
+    );
+  }
+
   if (error) return <p className="error-message">{error}</p>;
 
   return (
@@ -42,21 +47,21 @@ const Complaints = () => {
   
       {/* Conditionally render images if the list is not empty */}
       {complaint.images && complaint.images.length > 0 && (
-    <div className="complaint-images">
-      <h3>Attached Images:</h3>
-      <div className="image-gallery">
-      {complaint.images.map((imageUrl, index) => (
-        <img key={index} src={imageUrl} alt={`Complaint Image ${index + 1}`} className="complaint-image" />
-      ))}
-    </div>
-  </div>
-)}
-
+        <div className="complaint-images">
+          <h3>Attached Images:</h3>
+          <div className="image-gallery">
+            {complaint.images.map((imageUrl, index) => (
+              <img key={index} src={imageUrl} alt={`Complaint Image ${index + 1}`} className="complaint-image" />
+            ))}
+          </div>
+        </div>
+      )}
   
-      <button onClick={() => navigate(-1)}>Back to Issues</button>
+      <button className="back-button" onClick={() => navigate('/complaints')}>
+        Back to Issues
+      </button>
     </div>
   );
-  
 };
 
 export default Complaints;

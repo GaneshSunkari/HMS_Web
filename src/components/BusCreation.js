@@ -14,7 +14,6 @@ const BusCreation = () => {
   const [totalPages, setTotalPages] = useState(1);
   const [selectedBus, setSelectedBus] = useState(null);
 
-
   const fetchBusData = async (page = 1) => {
     try {
       setLoading(true);
@@ -34,31 +33,37 @@ const BusCreation = () => {
     fetchBusData(currentPage);
   }, [currentPage]);
 
-  if (loading) {
-    return (
-      <div className="bus-loader">
-        <div className="loader-circle" />
-        <p>Loading Bus Forms...</p>
-      </div>
-    );
-  }
-
   return (
-    <div className="bus-creation-container">
-      {!showForm && !showAnalytics ? (
-        <>
-          <div className="bus-header">
-            <h2 className="bus-title">Bus Management</h2>
-            <button
-              className="bus-create-button"
-              onClick={() => setShowForm(true)}
-            >
-              Create
-            </button>
-          </div>
+    <div className="buscreation-container">
+      <div className="buscreation-header">
+        <h2 className="buscreation-title">Bus Management</h2>
+        {/* Create button added here */}
+        {!showForm && !showAnalytics && (
+          <button
+            className="buscreation-create-button"
+            onClick={() => setShowForm(true)}
+          >
+            Create Bus
+          </button>
+        )}
+      </div>
 
-          <div className="bus-table-container">
-            <table className="bus-table">
+      {/* Display Loader only when loading */}
+      {loading && (
+        <div className="buscreation-loader-container">
+          <div className="buscreation-loader"></div>
+        </div>
+      )}
+
+      {/* Show message if no buses available and not loading */}
+      {!loading && busData.length === 0 && (
+        <div className="no-buses-message">No buses available.</div>
+      )}
+
+      {!loading && !showForm && !showAnalytics && busData.length > 0 ? (
+        <>
+          <div className="buscreation-table-container">
+            <table className="buscreation-styled-table">
               <thead>
                 <tr>
                   <th>S.No.</th>
@@ -76,7 +81,6 @@ const BusCreation = () => {
                       {Array.isArray(bus.hostelId)
                         ? bus.hostelId.map(h => h.name).join(", ")
                         : "No Hostels Assigned"}
-
                     </td>
                     <td>
                       {Array.isArray(bus.cities)
@@ -86,16 +90,17 @@ const BusCreation = () => {
                     <td>
                       <span
                         className={
-                          new Date(bus.expiresAt) > new Date() ? "status-active" : "status-inactive"
+                          new Date(bus.expiresAt) > new Date()
+                            ? "status-active"
+                            : "status-inactive"
                         }
                       >
                         {new Date(bus.expiresAt) > new Date() ? "Active" : "Inactive"}
                       </span>
-
                     </td>
-                    <td className="bus-action-cell">
+                    <td className="buscreation-action-cell">
                       <button
-                        className="bus-arrow-button"
+                        className="buscreation-arrow-button"
                         onClick={() => {
                           setSelectedBus(bus);
                           setShowAnalytics(true);
@@ -110,11 +115,11 @@ const BusCreation = () => {
             </table>
           </div>
 
-          <div className="busform-pagination">
+          <div className="buscreation-pagination">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex}
-                className={`busform-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
+                className={`buscreation-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
                 onClick={() => setCurrentPage(pageIndex + 1)}
               >
                 {pageIndex + 1}
@@ -124,12 +129,12 @@ const BusCreation = () => {
         </>
       ) : showForm ? (
         <BusForm onCancel={() => setShowForm(false)} />
-      ) : (
+      ) : showAnalytics ? (
         <BusAnalytics
           analyticsData={selectedBus}
           onBack={() => setShowAnalytics(false)}
         />
-      )}
+      ) : null}
     </div>
   );
 };

@@ -15,6 +15,7 @@ const Issues = () => {
 
   useEffect(() => {
     const fetchHostels = async () => {
+      setLoading(true);
       try {
         const response = await api.get("/hostel/");
         setHostels(response.data.data.hostels);
@@ -24,6 +25,7 @@ const Issues = () => {
       } catch (error) {
         console.error("Error fetching hostels:", error);
       }
+      setLoading(false);
     };
     fetchHostels();
   }, []);
@@ -53,22 +55,30 @@ const Issues = () => {
   return (
     <div className="issues-container">
       <h2>Issues Reported</h2>
-      <div className="hostel-select-container">
-        <label htmlFor="hostel-select">Select Hostel: </label>
-        <select
-          id="hostel-select"
-          value={selectedHostel}
-          onChange={(e) => setSelectedHostel(e.target.value)}
-        >
-          {hostels.map((hostel) => (
-            <option key={hostel._id} value={hostel._id}>
-              {hostel.name}
-            </option>
-          ))}
-        </select>
-      </div>
 
-      {loading && <p>Loading...</p>}
+      {loading && (
+        <div className="issues-loader-container">
+          <div className="issues-loader"></div>
+        </div>
+      )}
+
+      {!loading && (
+        <div className="hostel-select-container">
+          <label htmlFor="hostel-select">Select Hostel: </label>
+          <select
+            id="hostel-select"
+            value={selectedHostel}
+            onChange={(e) => setSelectedHostel(e.target.value)}
+          >
+            {hostels.map((hostel) => (
+              <option key={hostel._id} value={hostel._id}>
+                {hostel.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {error && <p className="error-message">{error}</p>}
       {!loading && !error && issues.length === 0 && <p>No issues found.</p>}
       {!loading && !error && issues.length > 0 && (

@@ -14,36 +14,34 @@ const Student = () => {
 
   const navigate = useNavigate();
 
-  // Fetch all hostels on component mount
   useEffect(() => {
     const fetchHostels = async () => {
+      setLoading(true);
       try {
         const response = await api.get("/hostel/");
         setHostels(response.data.data.hostels);
         if (response.data.data.hostels.length > 0) {
-          setSelectedHostel(response.data.data.hostels[0]._id); // Select the first hostel by default
+          setSelectedHostel(response.data.data.hostels[0]._id);
         }
       } catch (error) {
         console.error("Error fetching hostels:", error);
       }
+      setLoading(false);
     };
     fetchHostels();
   }, []);
 
-  // Fetch students whenever hostel or page changes
   useEffect(() => {
     if (selectedHostel) {
       fetchStudents(currentPage, selectedHostel);
     }
   }, [currentPage, selectedHostel]);
 
-  // Function to fetch students
   const fetchStudents = async (page, hostelId) => {
     setLoading(true);
     setError(null);
     try {
       const response = await api.get(`/hostel/students?hostelId=${hostelId}&page=${page}`);
-      console.log(response.data);
       setStudents(response.data.data.students);
       setTotalPages(response.data.data.meta.totalPages);
     } catch (err) {
@@ -54,33 +52,37 @@ const Student = () => {
   };
 
   return (
-    <div className="student-container">
+    <div className="students-container">
       <h2>Student List</h2>
 
-      {/* Hostel Selection Dropdown */}
-      <div className="hostel-select-container">
-        <label htmlFor="hostel-select">Select Hostel: </label>
-        <select
-          id="hostel-select"
-          value={selectedHostel}
-          onChange={(e) => setSelectedHostel(e.target.value)}
-        >
-          {hostels.map((hostel) => (
-            <option key={hostel._id} value={hostel._id}>
-              {hostel.name}
-            </option>
-          ))}
-        </select>
-      </div>
+      {loading && (
+        <div className="students-loader-container">
+          <div className="students-loader"></div>
+        </div>
+      )}
 
-      {loading && <p>Loading students...</p>}
+      {!loading && (
+        <div className="hostel-select-container">
+          <label htmlFor="hostel-select">Select Hostel: </label>
+          <select
+            id="hostel-select"
+            value={selectedHostel}
+            onChange={(e) => setSelectedHostel(e.target.value)}
+          >
+            {hostels.map((hostel) => (
+              <option key={hostel._id} value={hostel._id}>
+                {hostel.name}
+              </option>
+            ))}
+          </select>
+        </div>
+      )}
+
       {error && <p className="error-message">{error}</p>}
       {!loading && !error && students.length === 0 && <p>No students available.</p>}
-
-      {/* Student Table */}
       {!loading && !error && students.length > 0 && (
         <>
-          <table className="student-styled-table">
+          <table className="students-styled-table">
             <thead>
               <tr>
                 <th>S.No</th>
@@ -92,11 +94,7 @@ const Student = () => {
             </thead>
             <tbody>
               {students.map((student, index) => (
-                <tr
-                  key={student._id}
-                  // onClick={() => navigate(`/students/${student._id}`)} // Navigate if needed
-                  className="clickable-row"
-                >
+                <tr key={student._id} className="clickable-row">
                   <td>{index + 1 + (currentPage - 1) * 10}</td>
                   <td>{student.fullName}</td>
                   <td>{student.email}</td>
@@ -107,12 +105,11 @@ const Student = () => {
             </tbody>
           </table>
 
-          {/* Pagination Controls */}
-          <div className="student-pagination">
+          <div className="students-pagination">
             {[...Array(totalPages)].map((_, pageIndex) => (
               <button
                 key={pageIndex}
-                className={`student-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
+                className={`students-page-btn ${currentPage === pageIndex + 1 ? "active" : ""}`}
                 onClick={() => setCurrentPage(pageIndex + 1)}
               >
                 {pageIndex + 1}
