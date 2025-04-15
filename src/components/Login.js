@@ -15,13 +15,17 @@ const Login = () => {
     e.preventDefault();
     setLoading(true);
     setError("");
-
+    let customError = null;
     try {
       const response = await axios.post(
         "https://rgukt-hms.vercel.app/api/v1/auth/login",
         { email, password }
       );
       console.log(response.data);
+      if (response.data.data.user.role !== "admin" && response.data.data.user.role !== "caretaker") {
+        customError = "You are not authorized to access this page.";
+        throw new Error();
+      }
 
       const { accessToken, refreshToken } = response.data.data;
 
@@ -32,7 +36,7 @@ const Login = () => {
       // Redirect to Admin Dashboard
       window.location.href = "/admindashboard";
     } catch (err) {
-      setError(err?.response?.data?.message || "Invalid credentials");
+      setError(customError || err?.response?.data?.message || "Invalid credentials");
     } finally {
       setLoading(false); // Stop loading after login attempt
     }
