@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Pie, Bar } from "react-chartjs-2";
 import { Button } from "@mui/material";
-import axios from "axios";
 import "chart.js/auto";
 import "./BusAnalytics.css";
 import api from "./Api";

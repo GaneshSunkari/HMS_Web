@@ -19,6 +19,12 @@
   background-color: orange; /* Darker orange on hover */
 }
 
+.buscreation-header h2 {
+  font-size: 28px;
+  color: white; /* Dark text for heading */
+  margin-bottom: 20px;
+  font-weight: bold;
+}
 
 /* Status Active/Inactive */
 .status-active {
