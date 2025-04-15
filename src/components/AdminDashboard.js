@@ -11,9 +11,9 @@ import "./styles.css";
 import Bus from "./Bus";
 
 const AdminDashboard = () => {
-  const [selectedOption, setSelectedOption] = useState("");
+  const [selectedOption, setSelectedOption] = useState("hostels");
   const [showForm, setShowForm] = useState(false);
-  
+
 
   return (
     <div className="container">
@@ -22,27 +22,49 @@ const AdminDashboard = () => {
         <h1 className="logo">RGUKT</h1>
         <nav>
           <ul>
-            <li className="nav-item" onClick={() => { setSelectedOption("hostels"); setShowForm(false); }}>
+            <li
+              className={`nav-item ${selectedOption === "hostels" ? "active" : ""}`}
+              onClick={() => { setSelectedOption("hostels"); setShowForm(false); }}
+            >
               Hostels
             </li>
-            <li className="nav-item" onClick={() => { setSelectedOption("caretakers") }}>
+            <li
+              className={`nav-item ${selectedOption === "caretakers" ? "active" : ""}`}
+              onClick={() => setSelectedOption("caretakers")}
+            >
               Caretakers
             </li>
-            <li className="nav-item" onClick={() => { setSelectedOption("issues") }}>
+            <li
+              className={`nav-item ${selectedOption === "issues" ? "active" : ""}`}
+              onClick={() => setSelectedOption("issues")}
+            >
               Issues
             </li>
-            <li className="nav-item" onClick={() => setSelectedOption("students")}>
+            <li
+              className={`nav-item ${selectedOption === "students" ? "active" : ""}`}
+              onClick={() => setSelectedOption("students")}
+            >
               Students
             </li>
-            <li className="nav-item" onClick={() => { setSelectedOption("buscreation") }}>
+            <li
+              className={`nav-item ${selectedOption === "buscreation" ? "active" : ""}`}
+              onClick={() => setSelectedOption("buscreation")}
+            >
               Bus Creation
             </li>
-            <li className="nav-item" onClick={() => { setSelectedOption("bus") }}>
+            <li
+              className={`nav-item ${selectedOption === "bus" ? "active" : ""}`}
+              onClick={() => setSelectedOption("bus")}
+            >
               Bus
             </li>
-            <li className="nav-item" onClick={() => setSelectedOption("profile")}>
+            <li
+              className={`nav-item ${selectedOption === "profile" ? "active" : ""}`}
+              onClick={() => setSelectedOption("profile")}
+            >
               Profile
             </li>
+
           </ul>
         </nav>
       </aside>
@@ -55,10 +77,10 @@ const AdminDashboard = () => {
         {selectedOption === "issues" && <Issues />}
         {selectedOption === "students" && <Student />}
         {selectedOption === "buscreation" && <BusCreation />}
-        {selectedOption === "bus" && <Bus/>}
+        {selectedOption === "bus" && <Bus />}
         {selectedOption === "profile" && <Profile />}
 
-        
+
       </div>
     </div>
   );
